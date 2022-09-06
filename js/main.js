@@ -1,4 +1,4 @@
-let dota = [
+let heroFromDota = [
   {
     id: "pudge",
     name: "Pudge",
@@ -7,7 +7,7 @@ let dota = [
       "Pudge — это герой с ближним типом атаки, основным атрибутом которого является сила.Его первая способность,  Meat Hook, бросает окровавленный крюк в определенную область или юнита. Крюк зацепится за первого юнита, в которого попадет, притащит его к Pudge и нанесет урон, если это враг. Вторая способность,  Rot, токсичное облако, вызванное из-за гноения, постоянно наносит урон и замедляет противников, ранит не только вражеских юнитов, но и самого Pudge. Пассивная способность,  Flesh Heap, дает Pudge дополнительное сопротивление магии, а также дополнительную силу, которая увеличивается, когда Pudge убивает вражеского героя, или тот умирает поблизости. Способность начинает накапливать заряды уже до того, как будет выучена, но получить силу герой сможет, только изучив ее. Ультимативной способностью,  Dismember, Pudge начинает заживо пожирать вражеского юнита, обездвиживая его и нанося периодический урон. ",
   },
   {
-    id: "Bristleback",
+    id: "bristleback",
     name: "Bristleback",
     image: "/img/brist.png",
     description:
@@ -29,44 +29,23 @@ let dota = [
   },
 ];
 
-const contentBlock = document.createElement("div");
-contentBlock.className = "contentBlock";
-const headerCreatures = document.createElement("h2");
-const imageCreatures = document.createElement("img");
-const descriptionOfCreatures = document.createElement("p");
-function showCreatures(target) {
-  const button = target.id;
-  switch (button) {
-    case "pudge":
-      headerCreatures.innerHTML = dota[0].name;
-      imageCreatures.src = dota[0].image;
-      descriptionOfCreatures.innerHTML = dota[0].description;
-      break;
-    case "bristleback":
-      headerCreatures.innerHTML = dota[1].name;
-      imageCreatures.src = dota[1].image;
-      descriptionOfCreatures.innerHTML = dota[1].description;
-      break;
-    case "shadowFiend":
-      headerCreatures.innerHTML = dota[2].name;
-      imageCreatures.src = dota[2].image;
-      descriptionOfCreatures.innerHTML = dota[2].description;
-      break;
-    case "queenOfpain":
-      headerCreatures.innerHTML = dota[3].name;
-      imageCreatures.src = dota[3].image;
-      descriptionOfCreatures.innerHTML = dota[3].description;
-      break;
-  }
-  contentBlock.appendChild(headerCreatures);
-  contentBlock.appendChild(imageCreatures);
-  contentBlock.appendChild(descriptionOfCreatures);
-  let mainBlock = document.querySelector("main");
-  mainBlock.className = "mainBlock";
-  mainBlock.appendChild(contentBlock);
+const allHero = [...heroFromDota];
+const containerOfHero = document.querySelector(".content-block");
+function createCard(hero) {
+  containerOfHero.innerHTML = `
+  <div class="contentBlock">
+    <h2 class="name-of-hero">${hero.name}</h2>
+    <img src="${hero.image}"class="hero-image">
+    <p class="hero-description">${hero.description}</p>
+  </div>
+  `;
 }
 
-const listOfCreature = document.querySelector("#list-of-creature");
-listOfCreature.addEventListener("click", function (character) {
-  showCreatures(character.target);
+const listOfCreature = document.querySelector("#list-of-creatures");
+listOfCreature.addEventListener("click", function handleHeroClick(e) {
+  const clonedHero = allHero.forEach((hero) => {
+    if (e.target.id === hero.id) {
+      createCard(hero);
+    }
+  });
 });
