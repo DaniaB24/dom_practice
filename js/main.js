@@ -28,40 +28,45 @@ let dota = [
       "Queen of Pain — герой с дальним типом атаки и основным атрибутом интеллект. Она использует свои способности, чтобы приблизиться к врагам и нанести им огромный урон по области. Благодаря этой возможности, а также умению легко преследовать одиночные цели, обычно стоит на средней линии и играет роль ганкер и полу-фарм.  Blink — это основа набора способностей героини. Именно он позволяет ей врываться в драки и избегать их. Заняв атакующую позицию, Акаша со  Scream of Pain и  Sonic Wave способна сразу сокрушить целую команду. Погоня за блуждающими врагами — ещё одна сильная сторона Queen of Pain: с  Shadow Strike она никому не оставит шанса убежать. Акаша очень ловко совершает убийства в ранней игре, и при правильной сборке превращается в отличного героя полу-фарм.",
   },
 ];
-const listOfCreature = document.querySelector("#list-of-creature");
-listOfCreature.addEventListener("click", function (character) {
-  console.log(character.target);
-});
+
 const contentBlock = document.createElement("div");
 contentBlock.className = "contentBlock";
 const headerCreatures = document.createElement("h2");
 const imageCreatures = document.createElement("img");
-const paragraphP = document.createElement("p");
-function ifClicked(creature) {
-  if (creature.target.id === "pudge") {
-    headerCreatures.innerHTML = dota[0].name;
-    imageCreatures.src = dota[0].image;
-    paragraphP.innerHTML = dota[0].description;
-  } else if (creature.target.id === "bristleback") {
-    headerCreatures.innerHTML = dota[1].name;
-    imageCreatures.src = dota[1].image;
-    paragraphP.innerHTML = dota[1].description;
-  } else if (creature.target.id === "shadowFiend") {
-    headerCreatures.innerHTML = dota[2].name;
-    imageCreatures.src = dota[2].image;
-    paragraphP.innerHTML = dota[2].description;
-  } else if (creature.target.id === "queenOfpain") {
-    headerCreatures.innerHTML = dota[3].name;
-    imageCreatures.src = dota[3].image;
-    paragraphP.innerHTML = dota[3].description;
+const descriptionOfCreatures = document.createElement("p");
+function showCreatures(target) {
+  const button = target.id;
+  switch (button) {
+    case "pudge":
+      headerCreatures.innerHTML = dota[0].name;
+      imageCreatures.src = dota[0].image;
+      descriptionOfCreatures.innerHTML = dota[0].description;
+      break;
+    case "bristleback":
+      headerCreatures.innerHTML = dota[1].name;
+      imageCreatures.src = dota[1].image;
+      descriptionOfCreatures.innerHTML = dota[1].description;
+      break;
+    case "shadowFiend":
+      headerCreatures.innerHTML = dota[2].name;
+      imageCreatures.src = dota[2].image;
+      descriptionOfCreatures.innerHTML = dota[2].description;
+      break;
+    case "queenOfpain":
+      headerCreatures.innerHTML = dota[3].name;
+      imageCreatures.src = dota[3].image;
+      descriptionOfCreatures.innerHTML = dota[3].description;
+      break;
   }
   contentBlock.appendChild(headerCreatures);
   contentBlock.appendChild(imageCreatures);
-  contentBlock.appendChild(paragraphP);
+  contentBlock.appendChild(descriptionOfCreatures);
   let mainBlock = document.querySelector("main");
   mainBlock.className = "mainBlock";
   mainBlock.appendChild(contentBlock);
 }
-listOfCreature.addEventListener("click", (creature) => ifClicked(creature));
 
-const addInfo = document.querySelector("description-of-creature");
+const listOfCreature = document.querySelector("#list-of-creature");
+listOfCreature.addEventListener("click", function (character) {
+  showCreatures(character.target);
+});
