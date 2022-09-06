@@ -1,7 +1,7 @@
 const container = document.querySelector(".content-block");
 const listOfCreatures = document.querySelector("#list-of-creatures");
 
-let dotaHeroes = [
+const dotaHeroes = [
   {
     id: "pudge",
     name: "Pudge",
@@ -24,7 +24,7 @@ let dotaHeroes = [
       "Shadow Fiend — это герой с дальним типом атаки, основным атрибутом которого является Ловкость. Первые три способности,  Shadowraze, разрывают участок земли перед Shadow Fiend, нанося урон всем врагам в зоне действия. Разница между этими способностями заключается в дальности применения. Первая пассивная способность,  Necromastery, крадет душу каждого убитого врага, давая бонус к урону атак. После смерти половина из них теряется. Вторая пассивная способность,  Presence of the Dark Lord, снижает броню ближайших врагов. Ультимативная способность,  Requiem of Souls, выпускает собранные души, которые наносят урон всем существам вокруг, также они снижают наносимый ими урон и накладывают эффект страха. Если Shadow Fiend погибает, то способность автоматически срабатывает вне зависимости от ее готовности, но не применяет страх и действует вполсилы.",
   },
   {
-    id: "queenOfpain",
+    id: "queenOfPain",
     name: "Queen of Pain",
     image: "/img/Qp.png",
     description:
@@ -42,7 +42,6 @@ function createCard(hero) {
   `;
 }
 function handleHeroClick(e) {
-  console.log("hi");
   dotaHeroes.forEach((hero) => {
     if (e.target.id === hero.id) createCard(hero);
   });
